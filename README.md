@@ -27,7 +27,6 @@ Merupakan website berkumpulnya meme lucu.
 1. Dokumen Analisa dan Desain Sistem (Ekspektasi selesai: 9 April 2020)
 	Berisi :
 	1. System Process Diagram 
-	2. Decomposition Diagram 
 	3. Data Flow Diagram
 2. Skema Database (Ekspektasi selesai: 9 April 2020)
 	Berupa :
