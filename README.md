@@ -12,26 +12,23 @@ Merupakan website berkumpulnya meme lucu.
 
 # Tugas
 ## Front-end
-1. Membuat Login Page (Ekspektasi selesai: 9 April 2020)
-	Mempunyai fitur :
-	1. Email input box
-	2. Password input box
-	3. Ingat email dan password checkbox
-2. Ngebuat Registrasi Page (Ekspektasi selesai: 9 April 2020)
-	Mempunyai fitur :
-	1. Email input box
-	2. Username input box
-	3. Password input box
-	4. Confirm Password input box
+- [] Membuat Login Page yang mempunyai fitur :
+ - [] Email input box
+ - [] Password input box
+ - [] Ingat email dan password checkbox
+- [] Membuat Registrasi Page yang mempunyai fitur :
+ - [] Email input box
+ - [] Username input box
+ - [] Password input box
+ - [] Confirm Password input box
 ## Back-end
-1. Dokumen Analisa dan Desain Sistem (Ekspektasi selesai: 9 April 2020)
-	Berisi :
-	1. System Process Diagram 
-	3. Data Flow Diagram
-2. Skema Database (Ekspektasi selesai: 9 April 2020)
-	Berupa :
-	1. Output gambar dbdiagram.io
-	2. Export dbdiagram.io
+- [] Dokumen Analisa dan Desain Sistem 
+ - [] System Flow Diagram 
+ - [] Data Flow Diagram
+2. Skema Database 
+- [] Berupa :
+ - [] Output gambar dbdiagram.io
+ - [] Export dbdiagram.io
 	
 # Link
 ## Laporan Final Project
@@ -40,4 +37,3 @@ Merupakan website berkumpulnya meme lucu.
 [Diagrams.net](https://app.diagrams.net/#G1is6fezWZZrsBbdVYQgIa9fKeMo6NOr7V)
 ## Skema Database
 *Not Yet Available*
-
