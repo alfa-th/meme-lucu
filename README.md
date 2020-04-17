@@ -13,22 +13,21 @@ Merupakan website berkumpulnya meme lucu.
 # Tugas
 ## Front-end
 - [] Membuat Login Page yang mempunyai fitur :
- - [] Email input box
- - [] Password input box
- - [] Ingat email dan password checkbox
+	- [] Email input box
+	- [] Password input box
+	- [] Ingat email dan password checkbox
 - [] Membuat Registrasi Page yang mempunyai fitur :
- - [] Email input box
- - [] Username input box
- - [] Password input box
- - [] Confirm Password input box
+	- [] Email input box
+	- [] Username input box
+	- [] Password input box
+	- [] Confirm Password input box
 ## Back-end
-- [] Dokumen Analisa dan Desain Sistem 
- - [] System Flow Diagram 
- - [] Data Flow Diagram
-2. Skema Database 
-- [] Berupa :
- - [] Output gambar dbdiagram.io
- - [] Export dbdiagram.io
+- [] Dokumen Analisa dan Desain Sistem  berupa :
+	- [] System Flow Diagram 
+	- [] Data Flow Diagram
+- [] Skema Database berupa :
+	- [] Output gambar dbdiagram.io
+	- [] Export dbdiagram.io
 	
 # Link
 ## Laporan Final Project
