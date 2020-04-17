@@ -1,7 +1,7 @@
 # meme-lucu
 Merupakan website berkumpulnya meme lucu.
 
-# Cara nambahin file untuk sebagai developer
+# Cara menambahkan file sebagai developer
 1. `git clone https://github.com/alfa-th/meme-lucu/`
 2. Tambahkan file di folder khusus kalian masing"
 3. `git add .`
