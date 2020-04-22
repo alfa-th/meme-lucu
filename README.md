@@ -11,9 +11,9 @@ Merupakan website berkumpulnya meme lucu.
 # Fitur
 ## Front-end
 - [x] Login Page 
-      - [x] Flash rendering
+	- [x] Flash rendering
 - [x] Registration Page 
-      - [x] Flash rendering
+	- [x] Flash rendering
 ## Back-end
 - [x] Operasi Login dengan : 
 	- [x] Server-side form validation
@@ -65,5 +65,5 @@ Merupakan website berkumpulnya meme lucu.
 [Google Docs](https://docs.google.com/document/d/1T4N62dsxHGXPVadHxJ1uvz3_ohbTQIPYrLTKyy_6IxA/edit)
 ## Diagram Analisa dan Desain Sistem
 [diagrams.net](https://app.diagrams.net/#G1is6fezWZZrsBbdVYQgIa9fKeMo6NOr7V)
-## Dokuemn Skema Database
+## Dokumen Skema Database
 [dbdiagram.io](https://dbdiagram.io/d/5ea03c8739d18f5553fe06d9)
