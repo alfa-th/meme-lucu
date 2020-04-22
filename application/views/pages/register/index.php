@@ -25,9 +25,20 @@
           Registrasi
         </span>
 
-        <div v-if="validation_errors != 'null'">
-          <div v-for="(item, index) in validation_errors">
+        <div v-if="errors != null">
+          <div v-for="(item, index) in errors">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ item }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="success != null">
+          <div v-for="(item, index) in success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{ item }}
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -52,7 +63,7 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Enter confirm password">
-          <input class="input100" type="confirm password" name="confirm_password" placeholder="Confirm Password" />
+          <input class="input100" type="password" name="confirm_password" placeholder="Confirm Password" />
           <span class="focus-input100" data-placeholder="&#xf191;"></span>
         </div>
 
@@ -78,7 +89,8 @@
     var app = new Vue({
       el: "#app",
       data: {
-        validation_errors: <?= json_encode($this->session->flashdata("validation_errors")) ?>,
+        errors: <?= json_encode($this->session->flashdata("error")) ?>,
+        success: <?= json_encode($this->session->flashdata("success")) ?>
       }
     })
   </script>

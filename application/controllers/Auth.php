@@ -3,9 +3,11 @@ defined("BASEPATH") or exit("No direct script access allowed");
 
 class Auth extends CI_Controller
 {
-  public function index()
+  public function __construct()
   {
-    $this->render("login");
+    parent::__construct();
+
+    $this->load->model('users_model');
   }
 
   public function register()
@@ -20,7 +22,7 @@ class Auth extends CI_Controller
         "setuju" => $this->input->post("setuju") == "on" ? true : false
       ]
     ];
-    
+
     // Email harus ada dan harus sesuai dengan format email
     $this->form_validation->set_rules(
       "email",
@@ -65,26 +67,57 @@ class Auth extends CI_Controller
       ]
     );
 
+    // User harus menyetujui syarat dan ketentuan
     $this->form_validation->set_rules(
       "setuju",
-      "Menyetujui syarat penggunaan",
+      "Menyetujui syarat dan ketentuan penggunaan",
       "required",
       [
         "required" => "Pengguna harus menyetujui syarat dan ketentuan untuk mendaftar",
       ]
     );
 
+    // Lakukan validasi form 
+    // Apabila ada validasi yang salah : Ambil salahnya validasi dan taruh di flash dan redirect ulang ke URI login
+    // Apabila tidak ada : Lakukan operasi database
     if ($this->form_validation->run() == FALSE) {
-      // Ambil error validasi dan taruh di flash dan redirect ulang ke URI login
-      $this->session->set_flashdata("validation_errors", $this->form_validation->error_array());
-      redirect(base_url("register"));
-    } else {
-      $this->load->view("pages/beranda/index", $data);
+      $this->session->set_flashdata("error", array_values($this->form_validation->error_array()));
+      return redirect(base_url("register"));
     }
 
-    // Lakukan pengecekan username dan password pada database
-    //    Jika username tidak ada atau password salah , set flash username/password yang dimasukkan tidak cocok pada data yang ada di sistem
-    //    Jika username ada dan password benar, set session secara umum
+    // Cek apabila email sudah dipakai atau belum
+    // Apabila sudah dipakai : Beritahu user dengan menaruh pemberitahuan di flash
+    if ($this->users_model->is_email_exists($data["request"]["email"]) == TRUE) {
+      $this->session->set_flashdata("error", ["Email sudah dipakai"]);
+      return redirect(base_url("register"));
+    }
+
+    // Cek apabila username sudah dipakai atau belum
+    // Apabila sudah dipakai : Beritahu user dengan menaruh pemberitahuan di flash
+    if ($this->users_model->is_username_exists($data["request"]["username"]) == TRUE) {
+      $this->session->set_flashdata("error", ["Username sudah dipakai"]);
+      return redirect(base_url("register"));
+    }
+
+    // Siapkan data yang akan diregistrasikan
+    // Lakukan hasing pada password dengan algoritma BCrypt
+    $data["register_data"] = [
+      "email" => $data["request"]["email"],
+      "username" => $data["request"]["username"],
+      "password" => password_hash($data["request"]["password"], PASSWORD_DEFAULT)
+    ];
+
+
+    // Registrasikan user kedalam database sesuai data yang sudah disiapkan
+    // Jika ada kesalahan yang terjadi pada insert, maka user akan diberitahu melalui flash dan diredirect ke halaman registrasi ulang
+    if ($this->users_model->register_new_user(...array_values($data["register_data"])) == FALSE) {
+      $this->session->set_flashdata("error", "Terjadi kesalahan pada database, mohon registrasi ulang");
+      return redirect(base_url("register"));
+    }
+
+    // Taruh pemberitahuan di flash dan redirect user
+    $this->session->set_flashdata("success", ["Registrasi sukses, silahkan masuk"]);
+    return redirect(base_url("login"));
   }
 
   public function login()
@@ -127,20 +160,57 @@ class Auth extends CI_Controller
       $this->load->view("pages/beranda/index", $data);
     }
 
-    // Lakukan pengecekan username dan password pada database
-    //    Jika username tidak ada atau password salah , set flash username/password yang dimasukkan tidak cocok pada data yang ada di sistem
-    //    Jika username ada dan password benar, set session secara umum
+    // Cek apabila username ada
+    // Apabila sudah tidak ada : Beritahu user dengan menaruh pemberitahuan di flash
+    if ($this->users_model->is_username_exists($data["request"]["username"]) == FALSE) {
+      $this->session->set_flashdata("error", ["Username tidak ditemukan"]);
+      return redirect(base_url("login"));
+    }
+
+    // Ambil password yang ada dalam bentuk hash dan lakukan pengecekan kesamaan 
+    // Apabila sudah tidak : Beritahu user dengan menaruh pemberitahuan di flash
+    $hashed_password = $this->users_model->get_hashed_password($data["request"]["username"]);
+    if (password_verify($data["request"]["password"], $hashed_password) == FALSE) {
+      $this->session->set_flashdata("error", ["Password salah"]);
+      return redirect(base_url("login"));
+    }
+
+    // Siapkan data session user
+    $data["session"] = [
+      "logged_in" => TRUE,
+      "username" => $data["request"]["username"]
+    ];
+
+    // Modifikasi session user
+    $this->session->set_userdata($data["session"]);
+
+    // Taruh pemberitahuan di flash dan redirect user
+    $this->session->set_flashdata("success", ["Login sukses"]);
+    return redirect("beranda");
+  }
+
+  public function logout()
+  {
+    session_destroy();
+
+    redirect(base_url(""));
   }
 
   public function render($page)
   {
     switch ($page) {
       case "login":
-        $this->load->view("pages/login/index");
+        if ($this->session->userdata("logged_in") == TRUE)
+          redirect(base_url(""));
+        else
+          $this->load->view("pages/login/index");
         break;
 
       case "register":
-        $this->load->view("pages/register/index");
+        if ($this->session->userdata("logged_in") == TRUE)
+          redirect(base_url(""));
+        else
+          $this->load->view("pages/register/index");
         break;
     }
   }

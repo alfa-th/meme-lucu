@@ -17,17 +17,28 @@
     <div class="container-login100" style="background-image: url('images/uw.jpg');">
       <div class="wrap-login100">
         <?= form_open("auth/login", ["class" => "login100-form validate-form"]) ?>
-        <span class="login100-form-logo">
+        <!-- <span class="login100-form-logo">
           <i class="zmdi zmdi-landscape"></i>
-        </span>
+        </span> -->
 
         <span class="login100-form-title p-b-34 p-t-27">
           Login
         </span>
 
-        <div v-if="validation_errors != null">
-          <div v-for="(item, index) in validation_errors">
+        <div v-if="errors != null">
+          <div v-for="(item, index) in errors">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ item }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div v-if="success != null">
+          <div v-for="(item, index) in success">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{ item }}
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -79,7 +90,8 @@
     var app = new Vue({
       el: "#app",
       data: {
-        validation_errors: <?= json_encode($this->session->flashdata("validation_errors")) ?>,
+        errors: <?= json_encode($this->session->flashdata("error")) ?>,
+        success: <?= json_encode($this->session->flashdata("success")) ?>
       }
     })
   </script>
