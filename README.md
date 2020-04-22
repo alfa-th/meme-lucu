@@ -11,14 +11,18 @@ Merupakan website berkumpulnya meme lucu.
 # Fitur
 ## Front-end
 - [x] Login Page 
+      - [x] Flash rendering
 - [x] Registration Page 
+      - [x] Flash rendering
 ## Back-end
 - [x] Operasi Login dengan : 
 	- [x] Server-side form validation
 	- [x] Session setting
+	- [x] Message flashing
 - [x] Operasi Registrasi dengan :
 	- [x] Server-side form validation
 	- [x] Registration data insertion to database
+	- [x] Message flashing
 - [x] Operasi logout dengan :
 	- [x] Session destroying
 
@@ -35,17 +39,17 @@ Merupakan website berkumpulnya meme lucu.
 	- [x] Confirm Password input box
 ## Back-end
 - [x] Dokumen Analisa dan Desain Sistem  berupa :
-	- [] System Flow Diagram 
+	- [ ] System Flow Diagram 
 		- [x] Registration Flow
 		- [x] Login Flow
-		- [] Yang Lainnya
-	- [] Data Flow Diagram
+		- [ ] Yang Lainnya
+	- [ ] Data Flow Diagram
 		- [x] DFD 0 
-		- [] DFD 1 
-		- [] DFD 2
+		- [ ] DFD 1 
+		- [ ] DFD 2
 - [x] Skema Database berupa :
 	- [x] Dokumen dbdiagram.io
-- [] Operasi Backend
+- [ ] Operasi Backend
 	- [x] Login 
 		- [x] Server-side form validation
 		- [x] Session setting
@@ -54,7 +58,7 @@ Merupakan website berkumpulnya meme lucu.
 		- [x] Registration data insertion to database
 	- [x] Logout
 		- [x] Session destroying
-	- [] Yang lainnya
+	- [ ] Yang lainnya
 	
 # Link
 ## Laporan Final Project
