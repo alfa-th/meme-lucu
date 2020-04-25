@@ -37,6 +37,26 @@ Merupakan website berkumpulnya meme lucu.
 	- [x] Username input box
 	- [x] Password input box
 	- [x] Confirm Password input box
+- [ ] Membuat Home Page yang mempunyai fitur :
+	- [ ] List Meme
+		- [ ] Tombol Upvote
+		- [ ] Tombol Downvote
+		- [ ] Tombol Lapor
+- [ ] Membuat Dashboard dengan fitur : 
+	- [ ] Bagian Kiri
+		- [ ] Logo
+		- [ ] Hyperlink Home
+		- [ ] Dropdown Kategori
+	- [ ] Bagian Kanan
+		- [ ] Hyperlink Logout
+		- [ ] Hyperlink User
+- [ ] Membuat Halaman Upload dengan fitur :
+	- [ ] Input Box Gambar
+	- [ ] Input Box Judul
+	- [ ] Input Box Kategori
+	- [ ] Tombol Submit
+	
+		
 ## Back-end
 - [x] Dokumen Analisa dan Desain Sistem  berupa :
 	- [ ] System Flow Diagram 
@@ -58,7 +78,8 @@ Merupakan website berkumpulnya meme lucu.
 		- [x] Registration data insertion to database
 	- [x] Logout
 		- [x] Session destroying
-	- [ ] Yang lainnya
+	- [ ] Upload Meme
+	- [ ] Menampilkan Meme
 	
 # Link
 ## Laporan Final Project
