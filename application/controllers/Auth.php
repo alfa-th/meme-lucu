@@ -6,8 +6,14 @@ class Auth extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-
+    
     $this->load->model('users_model');
+    
+    if ($this->session->userdata("logged_in") == TRUE) {
+      $this->session->set_flashdata("error", ["Silahkan login terlebih dahulu"]);
+      redirect(base_url(""));
+    }
+
   }
 
   public function register()
@@ -122,13 +128,9 @@ class Auth extends CI_Controller
 
   public function login()
   {
-    $data = [
-      "request" => [
-        "username" => $this->input->post("username"),
-        "password" => $this->input->post("password"),
-        "checkbox" => $this->input->post("remember-me") == "on" ? true : false
-      ]
-    ];
+    $data["request"]["username"] = $this->input->post("username");
+    $data["request"]["password"] = $this->input->post("password");
+    $data["request"]["checkbox"] = $this->input->post("remember-me") == "on" ? TRUE : FALSE;
 
     // Username harus ada dan harus mempunyai panjang lebih dari 5 karakter
     $this->form_validation->set_rules(
@@ -154,7 +156,7 @@ class Auth extends CI_Controller
 
     if ($this->form_validation->run() == FALSE) {
       // Ambil error-error validasi lalu taruh di flash dan redirect ulang ke URI login
-      $this->session->set_flashdata("validation_errors", $this->form_validation->error_array());
+      $this->session->set_flashdata("error", array_values($this->form_validation->error_array()));
       redirect(base_url("login"));
     } else {
       $this->load->view("pages/beranda/index", $data);
@@ -176,10 +178,8 @@ class Auth extends CI_Controller
     }
 
     // Siapkan data session user
-    $data["session"] = [
-      "logged_in" => TRUE,
-      "username" => $data["request"]["username"]
-    ];
+    $data["session"]["logged_in"] = TRUE;
+    $data["session"]["username"] = $data["request"]["username"];
 
     // Modifikasi session user
     $this->session->set_userdata($data["session"]);
@@ -191,26 +191,24 @@ class Auth extends CI_Controller
 
   public function logout()
   {
-    session_destroy();
+    $userdatas = [
+      "logged_in", "username"
+    ];
 
-    redirect(base_url(""));
+    $this->session->unset_userdata($userdatas);
+    $this->session->set_flashdata("success", ["Logout sukses"]);
+
+    redirect("login");
   }
 
-  public function render($page)
+  public function load($page)
   {
     switch ($page) {
       case "login":
-        if ($this->session->userdata("logged_in") == TRUE)
-          redirect(base_url(""));
-        else
-          $this->load->view("pages/login/index");
+        $this->load->view("pages/login/index");
         break;
-
       case "register":
-        if ($this->session->userdata("logged_in") == TRUE)
-          redirect(base_url(""));
-        else
-          $this->load->view("pages/register/index");
+        $this->load->view("pages/register/index");
         break;
     }
   }

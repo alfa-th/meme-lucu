@@ -12,37 +12,38 @@
   <?php $this->load->view("components/scripts") ?>
 </head>
 
+<!-- Load navbar -->
+<?php $this->load->view("components/navbar") ?>
+
 <body>
   <div class="limiter" id="app">
     <div class="container-login100" style="background-image: url('images/uw.jpg');">
       <div class="wrap-login100">
         <?= form_open("auth/register", ["class" => "login100-form validate-form"]) ?>
-        <!-- <span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span> -->
-
         <span class="login100-form-title p-b-50 p-t-20">
           Registrasi
         </span>
 
-        <div v-if="errors != null">
-          <div v-for="(item, index) in errors">
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              {{ item }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+        <div class="mb-4" v-if="errors != null || success != null">
+          <div v-if="errors != null">
+            <div v-for="(item, index) in errors">
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ item }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div v-if="success != null">
-          <div v-for="(item, index) in success">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{ item }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <div v-if="success != null">
+            <div v-for="(item, index) in success">
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ item }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -83,17 +84,17 @@
       </div>
     </div>
   </div>
-
-  <!-- Custom Script -->
-  <script>
-    var app = new Vue({
-      el: "#app",
-      data: {
-        errors: <?= json_encode($this->session->flashdata("error")) ?>,
-        success: <?= json_encode($this->session->flashdata("success")) ?>
-      }
-    })
-  </script>
 </body>
+
+<!-- Custom Script -->
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      errors: <?= json_encode($this->session->flashdata("error")) ?>,
+      success: <?= json_encode($this->session->flashdata("success")) ?>
+    }
+  })
+</script>
 
 </html>

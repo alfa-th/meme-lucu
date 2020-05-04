@@ -1,7 +1,74 @@
-Hanya bisa diakses apabila login terjadi
+<!DOCTYPE html>
+<html lang="en">
 
-<?= print_r($this->session->userdata()) ?>
+<head>
+  <title>MEME-LUCU</title>
+  <meta charset="utf-8">
+  <!-- Load semua stylesheets -->
+  <?php $this->load->view("components/stylesheets") ?>
 
-<a href="<?= base_url("login") ?>">Login</a>
-<a href="<?= base_url("register") ?>">Register</a>
-<a href="<?= base_url("auth/logout") ?>">Destroy Session</a>
+  <!-- Load semua script library -->
+  <?php $this->load->view("components/scripts") ?>
+</head>
+
+<!-- Load navbar -->
+<?php $this->load->view("components/navbar") ?>
+
+<body>
+  <div id="app" class="pt-5 mt-2">
+    <div class="pb-5 pt" style="position: relative; z-index: 8;">
+      <div class="container">
+        <div class="row" style="margin-top: -50px;">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-5">
+            <img src="images/img_1.jpg" alt="Image" class="img-fluid mb-3">
+            <h3 class="text-primary h4 mb-2">ISI</h3>
+            <a href="#" class="btn btn-primary btn-md">Upvote</a>
+            <a href="#" class="btn btn-primary btn-md">Downvote</a>
+            <a href="#" class="btn btn-primary btn-md">Lapor</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+<!-- Custom Script -->
+<script>
+
+</script>
+
+</html>
