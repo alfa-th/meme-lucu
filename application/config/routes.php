@@ -61,3 +61,5 @@ $route['beranda'] = 'beranda/load';
 
 $route['upload'] = 'upload/load';
 
+$route["api/v1"] = "api/V1";
+

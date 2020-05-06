@@ -8,11 +8,6 @@ class Auth extends CI_Controller
     parent::__construct();
 
     $this->load->model('users_model');
-
-    if ($this->session->userdata("logged_in") == TRUE) {
-      $this->session->set_flashdata("error", ["Silahkan login terlebih dahulu"]);
-      redirect(base_url(""));
-    }
   }
 
   public function register()
@@ -203,9 +198,19 @@ class Auth extends CI_Controller
   {
     switch ($page) {
       case "login":
+        if ($this->session->userdata("logged_in") == TRUE) {
+          $this->session->set_flashdata("error", ["Silahkan login terlebih dahulu"]);
+          redirect(base_url(""));
+        }
+
         $this->load->view("pages/login/index");
         break;
       case "register":
+        if ($this->session->userdata("logged_in") == TRUE) {
+          $this->session->set_flashdata("error", ["Silahkan login terlebih dahulu"]);
+          redirect(base_url(""));
+        }
+
         $this->load->view("pages/register/index");
         break;
     }
