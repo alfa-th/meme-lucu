@@ -6,10 +6,17 @@ class Beranda extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    $this->load->model('posts_model');
   }
-  
+
   public function load()
   {
-    $this->load->view("pages/beranda/index");
+    // Dapatkan semua meme yang ada pada database
+    $data = [
+      "all_posts" => $this->posts_model->get_all_posts()
+    ];
+
+    $this->load->view("pages/beranda/index", $data);
   }
 }

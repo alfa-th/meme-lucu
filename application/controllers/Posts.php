@@ -7,6 +7,11 @@ class Post extends CI_Controller
   {
     parent::__construct();
   }
+
+  public function get_all()
+  {
+    
+  }
   
   public function load()
   {

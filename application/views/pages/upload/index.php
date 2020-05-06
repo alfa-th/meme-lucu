@@ -20,7 +20,7 @@
       <div>
         <div class="text-center justify-content-md-center">
           <h4 class="h4 text-gray-900 mb-3" style="color: black;">Upload Meme</h4>
-          <img id="image" />
+          <img id="image" v-if="url" :src="url" style="width:1024px; height:768px; object-fit:scale-down;"/>
         </div>
         <div class="card o-hidden border-0 shadow-lg my-5" style="margin-top: 100px;">
           <div class="card-body p-0">
@@ -55,7 +55,7 @@
 
                   <div class="form-group">
                     <label class="my-2" for="berkas">Masukkan Gambar</label>
-                    <input type="file" id="berkas" name="image-file" class="form-control">
+                    <input type="file" id="berkas" name="image-file" class="form-control" @change="onFileChange">
                   </div>
 
                   <div class="form-group">
@@ -94,26 +94,15 @@
     el: "#app",
     data: {
       errors: <?= json_encode($this->session->flashdata("error")) ?>,
-      success: <?= json_encode($this->session->flashdata("success")) ?>
-    }
-  })
-
-  function readURL(input) {
-    if (input.files && input.files[0]) {
-      var style = "height: 400px; object-fit:fill;"
-      var reader = new FileReader();
-
-      reader.onload = function(e) {
-        $('#image').attr('style', style);
-        $('#image').attr('src', e.target.result);
+      success: <?= json_encode($this->session->flashdata("success")) ?>,
+      url: null
+    },
+    methods: {
+      onFileChange(e) {
+        const file = e.target.files[0];
+        this.url = URL.createObjectURL(file);
       }
-
-      reader.readAsDataURL(input.files[0]); // convert to base64 string
     }
-  }
-
-  $("#image-file").change(function() {
-    readURL(this);
   });
 </script>
 

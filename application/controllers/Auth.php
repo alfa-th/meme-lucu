@@ -6,14 +6,13 @@ class Auth extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    
+
     $this->load->model('users_model');
-    
+
     if ($this->session->userdata("logged_in") == TRUE) {
       $this->session->set_flashdata("error", ["Silahkan login terlebih dahulu"]);
       redirect(base_url(""));
     }
-
   }
 
   public function register()
@@ -154,12 +153,11 @@ class Auth extends CI_Controller
       ]
     );
 
+    // Jalankan form validation
     if ($this->form_validation->run() == FALSE) {
       // Ambil error-error validasi lalu taruh di flash dan redirect ulang ke URI login
       $this->session->set_flashdata("error", array_values($this->form_validation->error_array()));
       redirect(base_url("login"));
-    } else {
-      $this->load->view("pages/beranda/index", $data);
     }
 
     // Cek apabila username ada
@@ -186,7 +184,7 @@ class Auth extends CI_Controller
 
     // Taruh pemberitahuan di flash dan redirect user
     $this->session->set_flashdata("success", ["Login sukses"]);
-    return redirect("beranda");
+    return redirect(base_url("beranda"));
   }
 
   public function logout()
@@ -198,7 +196,7 @@ class Auth extends CI_Controller
     $this->session->unset_userdata($userdatas);
     $this->session->set_flashdata("success", ["Logout sukses"]);
 
-    redirect("login");
+    redirect(base_url("login"));
   }
 
   public function load($page)
