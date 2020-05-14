@@ -63,3 +63,5 @@ $route['upload'] = 'upload/load';
 
 $route["api/v1"] = "api/V1";
 
+$route["kategori/(:any)"] = "kategori/load/$1";
+

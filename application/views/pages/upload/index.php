@@ -3,7 +3,10 @@
 
 <head>
   <title>MEME-LUCU</title>
-  <meta charset="utf-8">
+  
+  <!-- Load meta -->
+  <?php $this->load->view("components/meta") ?>
+
   <!-- Load semua stylesheets -->
   <?php $this->load->view("components/stylesheets") ?>
 
@@ -20,7 +23,7 @@
       <div>
         <div class="text-center justify-content-md-center">
           <h4 class="h4 text-gray-900 mb-3" style="color: black;">Upload Meme</h4>
-          <img id="image" v-if="url" :src="url" style="width:1024px; height:768px; object-fit:fill;"/>
+          <img id="image" v-if="url" :src="url" style="width:1024px; height:768px; object-fit: contain;"/>
         </div>
         <div class="card o-hidden border-0 shadow-lg my-5" style="margin-top: 100px;">
           <div class="card-body p-0">

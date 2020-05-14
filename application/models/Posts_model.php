@@ -12,8 +12,8 @@ class Posts_model extends CI_Model
       "img_link" => $img_link,
       "kategori" => $kategori
     ]);
-    
-    if($result_state == TRUE) {
+
+    if ($result_state == TRUE) {
       return $this->db->insert_id();
     } else {
       return FALSE;
@@ -24,6 +24,26 @@ class Posts_model extends CI_Model
   {
     $this->db->order_by("created_at ASC");
     $query = $this->db->get("post");
+
+    return $query->result_array();
+  }
+
+  public function get_category_from_postid($post_id)
+  {
+    $query = $this->db->get_where("post", [
+      "id" => $post_id
+    ]);
+
+    return $query->row()->kategori;
+  }
+
+  public function get_posts_from_category($category)
+  {
+    $query = $this->db
+      ->select("*")
+      ->from("post")
+      ->like("kategori", $category, "both")
+      ->get();
 
     return $query->result_array();
   }

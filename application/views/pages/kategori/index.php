@@ -76,7 +76,7 @@
       errors: <?= json_encode($this->session->flashdata("error")) ?>,
       success: <?= json_encode($this->session->flashdata("success")) ?>,
       sort_state: "",
-      posts: <?= json_encode($all_posts) ?>,
+      posts: <?= json_encode($categorized_data) ?>,
       username: "<?= $this->session->userdata("username") ?>",
       activeClass: "btn-primary",
       passiveClass: "btn-outline-primary"

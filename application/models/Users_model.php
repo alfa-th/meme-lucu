@@ -45,16 +45,6 @@ class Users_model extends CI_Model
     return $query->row()->password;
   }
 
-  // $data = [
-  //   "request" => [
-  //     "email" => $this->input->post("email"),
-  //     "username" => $this->input->post("username"),
-  //     "password" => $this->input->post("password"),
-  //     "confirm_password" => $this->input->post("confirm_password"),
-  //     "setuju" => $this->input->post("setuju") == "on" ? true : false
-  //   ]
-  // ];
-
   public function register_new_user($email, $username, $hashed_password)
   {
     return $this->db->insert("user", [

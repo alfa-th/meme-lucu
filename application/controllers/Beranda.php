@@ -10,6 +10,7 @@ class Beranda extends CI_Controller
     $this->load->model('posts_model');
   }
 
+  // Fungsi yang meng-serve halaman ke client
   public function load()
   {
     // Dapatkan semua meme yang ada pada database

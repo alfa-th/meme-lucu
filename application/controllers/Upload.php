@@ -63,22 +63,24 @@ class Upload extends CI_Controller
       "poster" => $this->session->userdata("username"),
       "judul" => $this->input->post("judul"),
       "img_link" => $this->upload_path.$this->upload->data("file_name"),
-      "kategori" => $this->upload->data("kategori")
+      "kategori" => $this->input->post("kategori").","
     ];
 
     // Lakukan insert post pada database dengan keterangan gambar dan post
     // Apabila fungsi insert_post mengembalikan FALSE, maka ada kesalahan yang terjadi di database
     // Sehingga beritahu user melalui flashdata dan lakukan redirect
-    if ($post_id = $this->posts_model->insert_post(...array_values($query_data)) == FALSE) {
+    $post_id = $this->posts_model->insert_post(...array_values($query_data));
+    if ($post_id == FALSE) {
       $this->session->set_flashdata("error", "Terjadi kesalahan pada database, mohon upload ulang");
       return redirect(base_url("upload"));
     };
 
     // Beritahu apabila proses upload sukses pada flashdata dan redirect ke post yang bersangkutan
-    $this->session->set_flashdata("success", $this->upload->data());
+    $this->session->set_flashdata("success", ["Upload sukses", $post_id, $query_data]);
     return redirect(base_url("upload"));
   }
 
+  // Fungsi yang meng-serve halaman ke client
   public function load()
   {
     $this->load->view("pages/upload/index");

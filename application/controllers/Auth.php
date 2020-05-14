@@ -10,6 +10,7 @@ class Auth extends CI_Controller
     $this->load->model('users_model');
   }
 
+  // Operasi registrasi
   public function register()
   {
     // Ambil data yang ada POST
@@ -120,6 +121,7 @@ class Auth extends CI_Controller
     return redirect(base_url("login"));
   }
 
+  // Operasi login
   public function login()
   {
     $data["request"]["username"] = $this->input->post("username");
@@ -182,6 +184,7 @@ class Auth extends CI_Controller
     return redirect(base_url("beranda"));
   }
 
+  // Operasi logout
   public function logout()
   {
     $userdatas = [
@@ -194,6 +197,7 @@ class Auth extends CI_Controller
     redirect(base_url("login"));
   }
 
+  // Fungsi yang meng-serve halaman ke client
   public function load($page)
   {
     switch ($page) {

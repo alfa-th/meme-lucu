@@ -3,8 +3,10 @@
 
 <head>
   <title>Registrasi</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Load meta -->
+  <?php $this->load->view("components/meta") ?>
+
   <!-- Load semua stylesheets -->
   <?php $this->load->view("components/stylesheets") ?>
 
