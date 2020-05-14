@@ -14,6 +14,22 @@ Merupakan website berkumpulnya meme lucu.
 	- [x] Flash rendering
 - [x] Registration Page 
 	- [x] Flash rendering
+**_Baru_**
+- [x] Dashboard
+	- [x] Client-side list(categories) rendering
+	- [x] Conditional dashboard item rendering (untuk yang login dan untuk yang tidak login melihat hal berbeda)
+- [x] Beranda Page
+	- [x] Flash rendering
+	- [x] Client-side API vote operation
+	- [x] Client-side list(meme) rendering
+- [x] Kategori Page
+	- [x] Flash rendering
+	- [x] Client-side API vote operation
+	- [x] Client-side list(meme) rendering
+- [x] Upload Page
+	- [x] Image(meme) Preview with Javascript
+	
+	
 ## Back-end
 - [x] Operasi Login dengan : 
 	- [x] Server-side form validation
@@ -25,6 +41,38 @@ Merupakan website berkumpulnya meme lucu.
 	- [x] Message flashing
 - [x] Operasi logout dengan :
 	- [x] Session destroying
+**_Baru_**
+- [x] API untuk operasi resource sharing pada website dengan:
+	- [x] Endpoint :
+		- [x] Mendapatkan vote state pada suatu meme dari user
+		- [x] Mendapatkan total vote yang dimiliki oleh sebuah post
+		- [x] Mendapatkan kategori yang dimiliki oleh sebuah post
+		- [x] Mendapatkan semua kategori meme yang ada di website
+	- [x] Fitur :
+		- [x] Cross-origin resource sharing (API dapat diakses di domain lain)
+		- [x] Bad request setter (Apabila pengaksesan API tidak meliputi data yang cukup)
+- [x] Operasi Rendering Meme dengan :
+	- [x] Implementasi pada  :
+		- [x] Bagian Beranda
+		- [x] Bagian Kategori
+	- [x] Fitur : 
+		- [x] Akomodasi terhadap client side list rendering
+		- [x] Redireksi jika endpoint kategori diakses tanpa data yang cukup
+- [x] Operasi Voting Post dengan :
+	- [x] Endpoint :
+		- [x] /action, apabila terjadi akses endpoint post untuk voting
+	- [x] Fitur :
+		- [x] Insert atau Update keadaan vote pada suatu meme berdasarkan user
+- [x] Operasi Upload dengan :
+	- [x] Endpoint :
+		- [x] /, Untuk memperlihatkan halaman upload
+		- [x] /upload_action, Untuk menerima aksi upload dari sisi client
+	- [x] Fitur :
+		- [x] Menggunakan library image_upload yang disediakan oleh codeigniter
+		- [x] Enkripsi nama
+		- [x] Server-side Image Validation
+		- [x] Server-side Form Validation
+		- [x] Message flashing
 
 # Tugas
 ## Front-end
