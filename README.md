@@ -131,7 +131,7 @@ Merupakan website berkumpulnya meme lucu.
 	
 # Link
 ## Laporan Final Project
-[Google Docs](https://docs.google.com/document/d/1T4N62dsxHGXPVadHxJ1uvz3_ohbTQIPYrLTKyy_6IxA/edit)
+[Google Docs]()
 ## Diagram Analisa dan Desain Sistem
 [diagrams.net](https://app.diagrams.net/#G1is6fezWZZrsBbdVYQgIa9fKeMo6NOr7V)
 ## Dokumen Skema Database
