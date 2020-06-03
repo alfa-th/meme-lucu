@@ -63,7 +63,7 @@ class Auth extends CI_Controller
       "Confirm Password",
       "required|matches[password]",
       [
-        "required" => "Password harus diisi",
+        "required" => "Confirm Password harus diisi",
         "matches" => "Password dan Confirm Password tidak sama",
       ]
     );
@@ -154,7 +154,7 @@ class Auth extends CI_Controller
     if ($this->form_validation->run() == FALSE) {
       // Ambil error-error validasi lalu taruh di flash dan redirect ulang ke URI login
       $this->session->set_flashdata("error", array_values($this->form_validation->error_array()));
-      redirect(base_url("login"));
+      return redirect(base_url("login"));
     }
 
     // Cek apabila username ada
@@ -194,7 +194,7 @@ class Auth extends CI_Controller
   public function logout()
   {
     $userdatas = [
-      "logged_in", "username"
+      "logged_in", "username", "is_admin"
     ];
 
     $this->session->unset_userdata($userdatas);
