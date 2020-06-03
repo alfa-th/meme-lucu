@@ -62,8 +62,8 @@ class Upload extends CI_Controller
     $query_data = [
       "poster" => $this->session->userdata("username"),
       "judul" => $this->input->post("judul"),
-      "img_link" => $this->upload_path.$this->upload->data("file_name"),
-      "kategori" => $this->input->post("kategori").","
+      "img_link" => $this->upload_path . $this->upload->data("file_name"),
+      "kategori" => implode(",", $this->input->post("kategori"))
     ];
 
     // Lakukan insert post pada database dengan keterangan gambar dan post
@@ -76,7 +76,7 @@ class Upload extends CI_Controller
     };
 
     // Beritahu apabila proses upload sukses pada flashdata dan redirect ke post yang bersangkutan
-    $this->session->set_flashdata("success", ["Upload sukses", $post_id, $query_data]);
+    $this->session->set_flashdata("success", ["Upload sukses"]);
     return redirect(base_url("upload"));
   }
 

@@ -176,6 +176,12 @@ class Auth extends CI_Controller
     $data["session"]["logged_in"] = TRUE;
     $data["session"]["username"] = $data["request"]["username"];
 
+    if ($this->users_model->is_username_admin($data["request"]["username"])) {
+      $data["session"]["is_admin"] = TRUE;
+    } else {
+      $data["session"]["is_admin"] = FALSE;
+    }
+
     // Modifikasi session user
     $this->session->set_userdata($data["session"]);
 

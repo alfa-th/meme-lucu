@@ -12,8 +12,11 @@ class Post extends CI_Controller
   }
 
   // Fungsi yang meng-serve halaman post 
-  public function index($post_number)
+  public function index($post_number = NULL)
   {
+    if ($post_number == NULL) {
+      return redirect(base_url("/beranda"));
+    }
   }
 
   // API untuk aksi upvote, downvote, dan neutralize
@@ -31,12 +34,27 @@ class Post extends CI_Controller
       case "neutralize":
         $this->votes_model->insert_or_update_vote($username, $post_id, "-");
         break;
+      case "report":
+        $this->posts_model->report_post($post_id);
+        break;
+      case "delete":
+        $this->posts_model->delete_from_postid($post_id);
+        break;
     }
   }
 
   // Fungsi yang meng-serve halaman ke client
-  public function load()
+  public function load($post_id = NULL)
   {
-    $this->load->view("pages/beranda/index");
+    $data = [
+      "post_data" => $this->posts_model->get_post_from_postid($post_id),
+      "post_id" => $post_id
+    ];
+
+    if(!empty($data["post_data"])) {
+      return $this->load->view("pages/post/index", $data);
+    } else {
+      return $this->load->view("pages/post/empty");
+    }
   }
 }

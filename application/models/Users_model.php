@@ -19,6 +19,19 @@ class Users_model extends CI_Model
     }
   }
 
+  public function is_username_admin($username)
+  {
+    $query = $this->db->get_where("user", [
+      "username" => $username
+    ]);
+
+    if($query->row()->type == "admin") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function is_email_exists($email)
   {
     // Query user dengan email parameter 
@@ -52,5 +65,29 @@ class Users_model extends CI_Model
       "username" => $username,
       "password" => $hashed_password
     ]);
+  }
+
+  public function get_user_from_username($username)
+  {
+    $query = $this->db->get_where("user", [
+      "username" => $username
+    ]);
+
+    $result = $query->row_array();
+    unset($result["password"]);
+    
+    return $result;
+  }
+
+  public function get_totalvotes_from_username($username)
+  {
+    $query = $this->db->query("
+    SELECT 
+    (SELECT COUNT(*) FROM vote LEFT JOIN post ON vote.post_id = post.id WHERE state = 'Y' AND post.poster = ?) 
+    -
+    (SELECT COUNT(*) FROM vote LEFT JOIN post ON vote.post_id = post.id WHERE state = 'N' AND post.poster = ?) AS count 
+    ", [$username, $username]);
+
+    return $query->row()->count;
   }
 }

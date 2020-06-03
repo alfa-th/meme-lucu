@@ -12,14 +12,6 @@ class Kategori extends CI_Controller
   }
 
   // Fungsi yang meng-serve halaman-halaman kategori 
-  public function index($kategori_name = NULL)
-  {
-    if ($kategori_name == NULL) {
-      return redirect(base_url("/beranda"));
-    }
-  }
-
-  // Fungsi yang meng-serve halaman-halaman kategori 
   public function load($category_name = NULL)
   {
     if ($category_name == NULL) {

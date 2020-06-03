@@ -18,50 +18,45 @@
 <?php $this->load->view("components/navbar") ?>
 
 <body>
-  <div id="app" class="pt-5 mt-2">
-    <div class="mb-4" v-if="errors != null || success != null">
-      <div v-if="errors != null">
-        <div v-for="(item, index) in errors">
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{ item }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="success != null">
-        <div v-for="(item, index) in success">
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ item }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pb-5 pt" style="position: relative; z-index: 8;">
-      <div class="container">
-        <div class="card-columns">
-          <div class="card" v-for="(post, index) in posts" v-bind:key="index">
-            <a v-bind:href="base_url + 'post/' + post.id">
-              <img v-bind:src="base_url + post.img_link" alt="Image" class="card-img-top img-fluid mb-3">
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">{{ post.judul }}</h3>
-              <span class="card-text text-black">Di post oleh </span>
-              <a class="card-text text-info" v-bind:href="base_url + 'user/' + post.poster">{{ post.poster }}</a>
-              <p class="card-text pb-2">{{ ( post.vote + post.reactive_vote ) || 0 }} vote</p>
-              <a v-bind:href="'kategori/' + category" class="badge badge-info mr-1 p-2" v-if="category != ''" v-for="(category, index) in post.kategori.split(',')">
-                {{ category }}
-              </a>
-              <div v-if="username != ''" class="mt-3">
-                <button v-on:click="vote(post, 'Y')" class="btn" v-bind:class="posts[index].state == 'Y' ? activeClass : passiveClass">Upvote</button>
-                <button v-on:click="vote(post, 'N')" class="btn" v-bind:class="posts[index].state == 'N' ? activeClass : passiveClass">Downvote</button>
-                <button v-on:click="report(post)" class="btn btn-danger btn-md">Lapor</button>
+  <div id="app" class="container">
+    <div class="row justify-content-center">
+      <div class="col">
+        <div class="card o-hidden border-0 shadow-lg my-1">
+          <div class="row">
+            <div class="col-lg">
+              <div class="p-5 m-2">
+                <div class="pb-5 pt" style="position: relative; z-index: 8;">
+                  <section class="profile-header">
+                    <span><?= $user_data["type"] == "admin" ? "Administrator" : "User" ?> </span>
+                    <a class="card-text text-info" href="<?= base_url("user/" . $username) ?>"><?= $username ?></a>
+                    <p>Pengguna sejak tanggal <?= date("d-m-Y", strtotime($user_data["created_at"])) ?></p>
+                    <p>Votes : <?= $total_votes ?> </p>
+                  </section>
+                  <h4 class="d-flex justify-content-center pb-2">Meme-meme yang dipost oleh <?= $username ?></h4>
+                  <div class="container">
+                    <div class="card-columns">
+                      <div class="card" v-for="(post, index) in posts" v-bind:key="index">
+                        <a v-bind:href="base_url + 'post/' + post.id">
+                          <img v-bind:src="base_url + post.img_link" alt="Image" class="card-img-top img-fluid mb-3">
+                        </a>
+                        <div class="card-body">
+                          <h3 class="card-title">{{ post.judul }}</h3>
+                          <span class="card-text text-black">Di post oleh </span>
+                          <a class="card-text text-info" v-bind:href="base_url + 'user/' + post.poster">{{ post.poster }}</a>
+                          <p class="card-text pb-2">{{ ( post.vote + post.reactive_vote ) || 0 }} vote</p>
+                          <a v-bind:href="'kategori/' + category" class="badge badge-info mr-1 p-2" v-if="category != ''" v-for="(category, index) in post.kategori.split(',')">
+                            {{ category }}
+                          </a>
+                          <div v-if="username != ''" class="mt-3">
+                            <button v-on:click="vote(post, 'Y')" class="btn" v-bind:class="posts[index].state == 'Y' ? activeClass : passiveClass">Upvote</button>
+                            <button v-on:click="vote(post, 'N')" class="btn" v-bind:class="posts[index].state == 'N' ? activeClass : passiveClass">Downvote</button>
+                            <button v-on:click="report(post)" class="btn btn-danger btn-md">Lapor</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -155,5 +150,3 @@
     }
   });
 </script>
-
-</html>

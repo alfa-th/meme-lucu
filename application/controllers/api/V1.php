@@ -115,4 +115,5 @@ class V1 extends CI_Controller
       ->set_content_type('application/json')
       ->set_output(json_encode(array('categories_type' => $categories_type)));
   }
+  
 }

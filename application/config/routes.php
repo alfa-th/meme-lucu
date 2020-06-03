@@ -58,10 +58,17 @@ $route['register'] = 'auth/load/register';
 
 $route[''] = 'beranda/load';
 $route['beranda'] = 'beranda/load';
+$route["markotop"] = "beranda/markotop";
 
 $route['upload'] = 'upload/load';
+
+$route["lapor"] = "lapor/load";
 
 $route["api/v1"] = "api/V1";
 
 $route["kategori/(:any)"] = "kategori/load/$1";
+
+$route["post/(:any)"] = "post/load/$1";
+
+$route["user/(:any)"] = "user/load/$1";
 

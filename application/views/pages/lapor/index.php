@@ -54,14 +54,9 @@
               <h3 class="card-title">{{ post.judul }}</h3>
               <span class="card-text text-black">Di post oleh </span>
               <a class="card-text text-info" v-bind:href="base_url + 'user/' + post.poster">{{ post.poster }}</a>
-              <p class="card-text pb-2">{{ ( post.vote + post.reactive_vote ) || 0 }} vote</p>
-              <a v-bind:href="'kategori/' + category" class="badge badge-info mr-1 p-2" v-if="category != ''" v-for="(category, index) in post.kategori.split(',')">
-                {{ category }}
-              </a>
-              <div v-if="username != ''" class="mt-3">
-                <button v-on:click="vote(post, 'Y')" class="btn" v-bind:class="posts[index].state == 'Y' ? activeClass : passiveClass">Upvote</button>
-                <button v-on:click="vote(post, 'N')" class="btn" v-bind:class="posts[index].state == 'N' ? activeClass : passiveClass">Downvote</button>
-                <button v-on:click="report(post)" class="btn btn-danger btn-md">Lapor</button>
+              <p class="card-text pb-1">{{ post.report_count }} laporan</p>
+              <div class="mt-3">
+                <button v-on:click="delete_post(post, index)" class="btn btn-danger btn-md">Hapus</button>
               </div>
             </div>
           </div>
@@ -82,8 +77,6 @@
       sort_state: "",
       posts: <?= json_encode($all_posts) ?>,
       username: "<?= $this->session->userdata("username") ?>",
-      activeClass: "btn-primary",
-      passiveClass: "btn-outline-primary"
     },
     created: function() {
       this.populatePostsData();
@@ -123,35 +116,20 @@
       getVotes: function(i) {
         return axios.get(`${this.base_url}/api/v1/get_votes/${this.posts[i].id}`);
       },
-      report: function(post) {
+      removeElement: function(index) {
+        this.posts.splice(index, 1);
+      },
+      delete_post: function(post, index) {
         axios
-          .post(`${this.base_url}/post/action/report/${post.id}`)
+          .post(`${this.base_url}post/action/delete/${post.id}`)
           .then(response => {
-            console.log("Post " + post.id + " telah direport")
+            console.log(post.id + " telah didelete")
+            this.removeElement(index)
           })
           .catch(error => {
-            console.log("Error report ", error);
+            console.log("error report ", error);
           })
       },
-      vote: function(post, action) {
-        action_url = action == "Y" ? "upvote" : "downvote";
-        if (action == post.state) {
-          action = "-";
-          action_url = "neutralize";
-          post.reactive_vote = 0;
-        } else {
-          post.reactive_vote = action == "Y" ? +1 : -1
-        }
-        axios
-          .post(`${this.base_url}/post/action/${action_url}/${post.id}`)
-          .then(response => {
-            console.log(action_url + "d " + post.id + ", old state: " + post.state);
-            post.state = action;
-          })
-          .catch(error => {
-            console.log("error upvote ", error);
-          })
-      }
     }
   });
 </script>

@@ -58,6 +58,7 @@
               <div v-if="username != ''" class="mt-3">
                 <button v-on:click="vote(post, 'Y')" class="btn" v-bind:class="posts[index].state == 'Y' ? activeClass : passiveClass">Upvote</button>
                 <button v-on:click="vote(post, 'N')" class="btn" v-bind:class="posts[index].state == 'N' ? activeClass : passiveClass">Downvote</button>
+                <button v-on:click="report(post)" class="btn btn-danger btn-md">Lapor</button>
               </div>
             </div>
           </div>
@@ -118,6 +119,16 @@
       },
       getVotes: function(i) {
         return axios.get(`${this.base_url}/api/v1/get_votes/${this.posts[i].id}`);
+      },
+      report: function(post) {
+        axios
+          .post(`${this.base_url}/post/action/report/${post.id}`)
+          .then(response => {
+            console.log("Post " + post.id + " telah direport")
+          })
+          .catch(error => {
+            console.log("Error report ", error);
+          })
       },
       vote: function(post, action) {
         action_url = action == "Y" ? "upvote" : "downvote";

@@ -10,6 +10,15 @@ class Beranda extends CI_Controller
     $this->load->model('posts_model');
   }
 
+  public function markotop()
+  {
+    $data = [
+      "all_posts" => $this->posts_model->get_all_posts("votes")
+    ];
+
+    $this->load->view("pages/beranda/index", $data);
+  }
+
   // Fungsi yang meng-serve halaman ke client
   public function load()
   {

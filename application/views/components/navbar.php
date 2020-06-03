@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse d-block" id="navbarSupportedContent">
       <ul class="navbar-nav mr-1">
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">Meme Markotop</a>
+          <a class="nav-link text-light" href="<?= base_url("markotop") ?> ">Meme Markotop</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-light" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +36,12 @@
               <?= $this->session->userdata("username") ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Opsi</a>
+              <?php
+              if($this->session->userdata("is_admin") == TRUE)
+              {
+                echo '<a class="dropdown-item" href="'. base_url("lapor") .'">Lapor List</a>';
+              }
+              ?>
               <a class="dropdown-item" href="<?= base_url("auth/logout") ?>">Logout</a>
             </div>
           </li>
