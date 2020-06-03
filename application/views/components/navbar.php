@@ -13,7 +13,7 @@
             <?= empty($category_name) ? "Kategori Meme" : "Kategori " . ucfirst($category_name) ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#" v-for="type in categories_type" v-bind:index="type" style="text-transform: capitalize">
+            <a class="dropdown-item" v-bind:href="base_url + 'kategori/' + type.nama" v-for="type in categories_type" v-bind:index="type" style="text-transform: capitalize">
               {{ type.nama }}
             </a>
           </div>
@@ -51,7 +51,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <?php foreach ($this->session->userdata() as $key => $value) : ?>
-                <a class="dropdown-item" href="#"><?= $key . " => " . $value ?></a>
+                <a class="dropdown-item" href=""><?= $key . " => " . $value ?></a>
               <?php endforeach; ?>
             </div>
           </li>

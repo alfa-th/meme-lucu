@@ -55,7 +55,7 @@
               <span class="card-text text-black">Di post oleh </span>
               <a class="card-text text-info" v-bind:href="base_url + 'user/' + post.poster">{{ post.poster }}</a>
               <p class="card-text pb-2">{{ ( post.vote + post.reactive_vote ) || 0 }} vote</p>
-              <a v-bind:href="'kategori/' + category" class="badge badge-info mr-1 p-2" v-if="category != ''" v-for="(category, index) in post.kategori.split(',')">
+              <a v-bind:href="base_url + 'kategori/' + category" class="badge badge-info mr-1 p-2" v-if="category != ''" v-for="(category, index) in post.kategori.split(',')">
                 {{ category }}
               </a>
               <div v-if="username != ''" class="mt-3">

@@ -32,7 +32,7 @@
                   <p class="card-text py-1">
                     Di post oleh <?= $post_data["poster"] ?> pada <?= $post_data["created_at"] ?>
                   </p>
-                  <a v-bind:href="'kategori/' + category" class="badge badge-info mx-1 p-2" v-if="category != ''" v-for="(category, index) in post_category.split(',')">
+                  <a v-bind:href="base_url + 'kategori/' + category" class="badge badge-info mx-1 p-2" v-if="category != ''" v-for="(category, index) in post_category.split(',')">
                     {{ category }}
                   </a>
                   <div v-if="username != ''" class="mt-3">
