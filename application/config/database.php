@@ -76,11 +76,12 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-  // 'username' => 'root',
   'username' => 'awanamax_root',
+  'password' => '',
+  'database' => 'meme-lucu',
+  // 
+  // 'username' => 'root',
   // 'password' => '',
-  'password' => 'Harlem321_',
-	'database' => 'meme-lucu',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
