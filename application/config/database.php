@@ -76,7 +76,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-  'username' => 'awanamax_root',
+  'username' => '',
   'password' => '',
   'database' => 'meme-lucu',
   // 
